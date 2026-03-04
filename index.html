@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My CV — Nkosinathi Mkhonza</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --cream: #faf7f2;
+      --dark: #1c1a17;
+      --brown: #6b4f35;
+      --gold: #c9923a;
+      --warm-grey: #8a8070;
+      --card: #ffffff;
+      --border: #e8e0d4;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--dark);
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ── HERO ─────────────────────────────────── */
+    .hero {
+      background: var(--dark);
+      color: var(--cream);
+      padding: 80px 40px 60px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: end;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,146,58,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 7vw, 76px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-role {
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--warm-grey);
+      margin-top: 14px;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+
+    .hero-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--brown), var(--gold));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 44px;
+      color: white;
+      flex-shrink: 0;
+      animation: fadeUp 0.8s 0.2s ease both;
+      border: 3px solid rgba(201,146,58,0.4);
+    }
+
+    /* ── NAV ──────────────────────────────────── */
+    nav {
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 0 40px;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+    }
+
+    nav a {
+      color: var(--warm-grey);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 16px 20px;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+
+    nav a:hover { color: var(--gold); }
+
+    /* ── LAYOUT ───────────────────────────────── */
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 60px 32px 80px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    @media (max-width: 680px) {
+      .page { grid-template-columns: 1fr; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-avatar { display: none; }
+    }
+
+    /* ── SECTION TITLES ───────────────────────── */
+    .section { margin-bottom: 52px; }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--gold);
+      display: inline-block;
+    }
+
+    /* ── ABOUT ────────────────────────────────── */
+    .about p {
+      font-size: 15px;
+      line-height: 1.85;
+      color: #3a3530;
+      margin-bottom: 14px;
+    }
+
+    /* ── TIMELINE ENTRIES ─────────────────────── */
+    .entry {
+      display: grid;
+      grid-template-columns: 1fr;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px dashed var(--border);
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .entry::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 6px;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .entry:last-child { border-bottom: none; margin-bottom: 0; }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+    }
+
+    .entry-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .entry-date {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--warm-grey);
+      white-space: nowrap;
+    }
+
+    .entry-org {
+      font-size: 13px;
+      color: var(--brown);
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: 0.03em;
+    }
+
+    .entry-desc {
+      font-size: 14px;
+      color: #5a5248;
+      line-height: 1.7;
+    }
+
+    /* ── SIDEBAR ──────────────────────────────── */
+    .sidebar .section { margin-bottom: 40px; }
+
+    /* Contact */
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 14px;
+    }
+
+    .contact-label {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--warm-grey);
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .contact-value {
+      font-size: 13px;
+      color: var(--dark);
+      text-decoration: none;
+      word-break: break-word;
+    }
+
+    a.contact-value:hover { color: var(--gold); }
+
+    /* Skills */
+    .skill-group { margin-bottom: 16px; }
+
+    .skill-group-name {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brown);
+      margin-bottom: 8px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 2px;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      color: var(--dark);
+      letter-spacing: 0.04em;
+    }
+
+    .tag.gold { background: rgba(201,146,58,0.1); border-color: rgba(201,146,58,0.35); color: var(--brown); }
+
+    /* Languages bar */
+    .lang-item { margin-bottom: 12px; }
+    .lang-name { font-size: 13px; font-weight: 700; margin-bottom: 4px; display: flex; justify-content: space-between; }
+    .lang-level { font-size: 11px; color: var(--warm-grey); font-weight: 400; }
+    .lang-bar { height: 3px; background: var(--border); border-radius: 2px; }
+    .lang-fill { height: 100%; background: var(--gold); border-radius: 2px; }
+
+    /* ── FOOTER ───────────────────────────────── */
+    footer {
+      background: var(--dark);
+      color: var(--warm-grey);
+      text-align: center;
+      padding: 24px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+    }
+
+    footer span { color: var(--gold); }
+
+    /* ── ANIMATIONS ───────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .main-col > .section {
+      animation: fadeUp 0.6s ease both;
+    }
+    .main-col > .section:nth-child(2) { animation-delay: 0.1s; }
+    .main-col > .section:nth-child(3) { animation-delay: 0.2s; }
+    .main-col > .section:nth-child(4) { animation-delay: 0.3s; }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div>
+      <div class="hero-name">Nkosinathi<br><em>Mkhonza</em></div>
+      <div class="hero-role">Web Developer &amp; Software Engineer</div>
+    </div>
+    <div class="hero-avatar">NM</div>
+  </header>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="page">
+
+    <!-- LEFT COLUMN -->
+    <main class="main-col">
+
+      <!-- ABOUT -->
+      <section class="section about" id="about">
+        <div class="section-title">About Me</div>
+          <p>
+            I am a passionate and driven web developer based in Cape Town, with a solid foundation in HTML, CSS, JavaScript and Python. I enjoy turning ideas into functioning, user-friendly web applications and take pride in writing clean, maintainable code.
+          </p>
+          <p>
+            Over the past few years I have worked on small team projects and personal websites where I focused on front-end development, responsive design and simple back-end integrations. These projects taught me how to translate client needs into practical features and iterate quickly based on feedback.
+          </p>
+          <p>
+            Going forward, I aim to continue growing as a full-stack developer, learning scalable deployment practices and contributing to products that solve real problems. I value collaboration, continuous learning, and delivering work that people find genuinely useful.
+          </p>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section class="section" id="experience">
+        <div class="section-title">Work Experience</div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <div class="entry-title">Front-End Developer</div>
+            <div class="entry-date">Jan 2023 — Present</div>
+          </div>
+          <div class="entry-org">BrightWave Studios · Cape Town</div>
+          <div class="entry-desc">
+            Building responsive websites and single-page applications using modern HTML, CSS and JavaScript. Worked closely with designers to implement pixel-perfect interfaces and improved page load performance across several key pages.
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <div class="entry-title">Junior Web Developer</div>
+            <div class="entry-date">Mar 2021 — Dec 2022</div>
+          </div>
+          <div class="entry-org">Harbor Tech · Somerset West</div>
+          <div class="entry-desc">
+            Supported development of client websites, implemented feature enhancements and fixed bugs. Regularly used Git, Bootstrap and basic Python scripts to automate tasks and improve development workflows.
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <div class="entry-title">Development Intern</div>
+            <div class="entry-date">Jun 2020 — Feb 2021</div>
+          </div>
+          <div class="entry-org">Local Startup · Cape Town</div>
+          <div class="entry-desc">
+            Assisted with front-end tasks, wrote unit tests and contributed to documentation. Gained experience with agile workflows and collaborating with multidisciplinary teams.
+          </div>
+        </div>
+      </section>
+
+      <!-- EDUCATION -->
+      <section class="section" id="education">
+        <div class="section-title">Education</div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <div class="entry-title">Full Stack Web Development Bootcamp</div>
+            <div class="entry-date">2024 — 2025</div>
+          </div>
+          <div class="entry-org">HyperionDev</div>
+          <div class="entry-desc">Intensive programme covering HTML, CSS, JavaScript, Python, and deployment practices including GitHub Pages.</div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <div class="entry-title">Bachelor of Science in Information Technology</div>
+            <div class="entry-date">2017 — 2021</div>
+          </div>
+          <div class="entry-org">University of Cape Town</div>
+          <div class="entry-desc">Studied software development fundamentals, data structures and web technologies. Completed a final project building a small web application for managing student projects.</div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="sidebar">
+
+      <!-- CONTACT -->
+      <section class="section" id="contact">
+        <div class="section-title">Contact</div>
+
+        <div class="contact-item">
+          <span class="contact-label">Name</span>
+          <span class="contact-value">Nkosinathi Mkhonza</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Phone</span>
+          <a class="contact-value" href="tel:+27621778393">062 177 8393</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Email</span>
+          <a class="contact-value" href="mailto:nkosimkhonza5@gmail.com">nkosimkhonza5@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">LinkedIn</span>
+          <a class="contact-value" href="https://www.linkedin.com/in/nkosinathi-mkhonza-3bb1a72a2/" target="_blank">linkedin.com/in/nkosinathi-mkhonza</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">GitHub</span>
+          <a class="contact-value" href="https://github.com/NkosinathiMkhonza" target="_blank">github.com/NkosinathiMkhonza</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Location</span>
+          <span class="contact-value">South Africa</span>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section class="section" id="skills">
+        <div class="section-title">Skills</div>
+
+        <div class="skill-group">
+          <div class="skill-group-name">Technical</div>
+          <div class="skill-tags">
+            <span class="tag gold">HTML5</span>
+            <span class="tag gold">CSS3</span>
+            <span class="tag gold">JavaScript</span>
+            <span class="tag gold">Python</span>
+            <span class="tag gold">Git &amp; GitHub</span>
+          </div>
+        </div>
+
+        <div class="skill-group" style="margin-top:16px;">
+          <div class="skill-group-name">Tools &amp; Platforms</div>
+          <div class="skill-tags">
+            <span class="tag">VS Code</span>
+            <span class="tag">GitHub Pages</span>
+            <span class="tag">Bootstrap</span>
+            <span class="tag">Docker</span>
+          </div>
+        </div>
+
+        <div class="skill-group" style="margin-top:16px;">
+          <div class="skill-group-name">Soft Skills</div>
+          <div class="skill-tags">
+            <span class="tag">Problem Solving</span>
+            <span class="tag">Teamwork</span>
+            <span class="tag">Communication</span>
+            <span class="tag">Attention to Detail</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- LANGUAGES -->
+      <section class="section">
+        <div class="section-title">Languages</div>
+
+        <div class="lang-item">
+          <div class="lang-name">English <span class="lang-level">Fluent</span></div>
+          <div class="lang-bar"><div class="lang-fill" style="width:95%"></div></div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">Spanish <span class="lang-level">Conversational</span></div>
+          <div class="lang-bar"><div class="lang-fill" style="width:65%"></div></div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">Zulu <span class="lang-level">Basic</span></div>
+          <div class="lang-bar"><div class="lang-fill" style="width:30%"></div></div>
+        </div>
+      </section>
+
+    </aside>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>Made with care · <span style="color: #c9923a;">Nkosinathi Mkhonza</span></div>
+  </footer>
+
+  </body>
+
+</html>
